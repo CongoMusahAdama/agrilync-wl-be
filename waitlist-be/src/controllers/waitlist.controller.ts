@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { findUserByContact, createWaitlistUser } from '../services/waitlist.service';
 
 export const registerWaitlistUser = async (req: Request, res: Response): Promise<void> => {
-  const { fullName, contactInfo } = req.body;
+  const {  contactInfo } = req.body;
 
   try {
     const existingUser = await findUserByContact(contactInfo);
@@ -11,7 +11,7 @@ export const registerWaitlistUser = async (req: Request, res: Response): Promise
       return;
     }
 
-    await createWaitlistUser(fullName, contactInfo);
+    await createWaitlistUser(contactInfo);
     res.status(201).json({ success: true, message: 'Thank you for joining the AgriLync waitlist!' });
   } catch (error) {
     console.error('Error registering waitlist user:', error);

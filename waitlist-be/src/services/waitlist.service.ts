@@ -4,7 +4,7 @@ export const findUserByContact = async (contactInfo: string): Promise<IWaitlistU
   return await WaitlistUser.findOne({ contactInfo });
 };
 
-export const createWaitlistUser = async (fullName: string, contactInfo: string): Promise<IWaitlistUser> => {
-  const newUser = new WaitlistUser({ fullName, contactInfo });
+export const createWaitlistUser = async ( contactInfo: string): Promise<IWaitlistUser> => {
+  const newUser = new WaitlistUser({ contactInfo });
   return await newUser.save();
 };
